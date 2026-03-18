@@ -123,6 +123,12 @@ jobs:
           composer require illuminate/database:^12.0 --${{ matrix.stability }} -w --prefer-dist --no-interaction --no-progress --no-update
           composer update --${{ matrix.stability }} --prefer-dist --no-interaction --no-progress
 
+      - name: Install illuminate/database 13
+        if: ${{ matrix.php >= 8.3 }}
+        run: |
+          composer require illuminate/database:^13.0 --${{ matrix.stability }} -w --prefer-dist --no-interaction --no-progress --no-update
+          composer update --${{ matrix.stability }} --prefer-dist --no-interaction --no-progress
+
       - name: Execute illuminate tests
         if: ${{ matrix.php >= 8.2 }}
         run: vendor/bin/phpunit --group=illuminate
